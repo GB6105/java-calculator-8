@@ -6,6 +6,7 @@ import calculator.util.Validator;
 import calculator.view.InputView;
 import calculator.view.OutputView;
 import camp.nextstep.edu.missionutils.test.NsTest;
+import java.io.ByteArrayInputStream;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
@@ -23,6 +24,14 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
+    void custom_string_test() {
+        assertSimpleTest(() -> {
+            run("//;\\n1,2;3");
+            assertThat(output()).contains("결과 : 6");
+        });
+    }
+
+    @Test
     void 예외_테스트() {
         assertSimpleTest(() ->
                 assertThatThrownBy(() -> runException("-1,2,3"))
@@ -32,24 +41,19 @@ class ApplicationTest extends NsTest {
 
     @Test
     void input_test() {
-        assertSimpleTest(() -> {
-            run("문자열 입력");
-            InputView inputView = new InputView();
-            String input = inputView.inputString();
-            assertThat(input).isEqualTo("문자열 입력");
-        });
+        String testInput = "1,2:3";
+        System.setIn(new ByteArrayInputStream(testInput.getBytes()));
+
+        InputView inputView = new InputView();
+        String input = inputView.inputString();
+        assertThat(input).isEqualTo("1,2:3");
     }
 
     @Test
     void validator_test() {
-        assertSimpleTest(() -> {
-            run("1,2:3");
-            InputView inputView = new InputView();
-            String input = inputView.inputString();
-            Validator validator = new Validator();
-            boolean validateResult = validator.validateInput(input);
-            assertThat(validateResult).isTrue();
-        });
+        Validator validator = new Validator();
+        boolean validateResult = validator.validateInput("1,2:3");
+        assertThat(validateResult).isTrue();
     }
 
     @Test
