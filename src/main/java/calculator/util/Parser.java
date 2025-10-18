@@ -8,19 +8,20 @@ public class Parser {
         String delimiters = ",|:";
 
         if (input.startsWith("//")) {
-            int customDelimiterIdx = input.indexOf("\n");
+            int customDelimiterIdx = input.indexOf("\\n");
             if (customDelimiterIdx == -1) {
                 throw new IllegalArgumentException(ErrorMessage.INPUT_ERROR);
             }
             String customDelimiter = input.substring(2, customDelimiterIdx);
+            System.out.println("위치 파악" + customDelimiter);
             if (customDelimiter.length() != 1) {
                 throw new IllegalArgumentException(ErrorMessage.INPUT_ERROR);
             }
-            input = input.substring(customDelimiterIdx + 1);
+            input = input.substring(customDelimiterIdx + 2);
+            System.out.println("문자열만 " + input);
             delimiters += "|" + customDelimiter;
 
         }
-        System.out.println(delimiters);
         String[] tokens;
         try {
             tokens = input.split(delimiters);
@@ -30,7 +31,11 @@ public class Parser {
         List<Integer> result = new ArrayList<>();
         for (String token : tokens) {
             try {
-                result.add(Integer.parseInt(token));
+                int value = Integer.parseInt(token);
+                if (value < 0) {
+                    throw new IllegalArgumentException(ErrorMessage.INPUT_ERROR);
+                }
+                result.add(value);
 
             } catch (NumberFormatException e) {
                 throw new IllegalArgumentException("잘못된 숫자 형식입니다." + token);

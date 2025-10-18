@@ -4,6 +4,7 @@ import calculator.domain.Calculator;
 import calculator.util.Parser;
 import calculator.util.Validator;
 import calculator.view.InputView;
+import calculator.view.OutputView;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
 import org.junit.jupiter.api.Test;
@@ -61,7 +62,7 @@ class ApplicationTest extends NsTest {
 
     @Test
     void parser_test2() {
-        String testInput = "//;\n1,2;3";
+        String testInput = "//;\\n1,2;3";
         Parser parser = new Parser();
         List<Integer> result = parser.parseString(testInput);
         assertThat(result).containsExactly(1, 2, 3);
