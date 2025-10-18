@@ -43,7 +43,7 @@ class ApplicationTest extends NsTest {
             InputView inputView = new InputView();
             String input = inputView.inputString();
             Validator validator = new Validator();
-            boolean validateResult = validator.validateString(input);
+            boolean validateResult = validator.validateInput(input);
             assertThat(validateResult).isTrue();
         });
     }
