@@ -1,5 +1,6 @@
 package calculator;
 
+import calculator.view.InputView;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Test;
 
@@ -28,7 +29,9 @@ class ApplicationTest extends NsTest {
     void input_test() {
         assertSimpleTest(() -> {
             run("문자열 입력");
-            assertThat(output()).contains("문자열 입력");
+            InputView inputView = new InputView();
+            String input = inputView.inputString();
+            assertThat(input).isEqualTo("문자열 입력");
         });
     }
 
