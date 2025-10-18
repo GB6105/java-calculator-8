@@ -1,5 +1,6 @@
 package calculator;
 
+import calculator.util.Validator;
 import calculator.view.InputView;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Test;
@@ -33,6 +34,15 @@ class ApplicationTest extends NsTest {
             String input = inputView.inputString();
             assertThat(input).isEqualTo("문자열 입력");
         });
+    }
+    @Test
+    void validator_test(){
+        assertSimpleTest(() -> {
+            run("1,2;3");
+            Validator validator = new Validator();
+            boolean validateResult = validator.validateString();
+            assertThat(validateResult).isTrue();
+        })
     }
 
     @Override
