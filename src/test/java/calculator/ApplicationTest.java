@@ -1,8 +1,10 @@
 package calculator;
 
+import calculator.util.Parser;
 import calculator.util.Validator;
 import calculator.view.InputView;
 import camp.nextstep.edu.missionutils.test.NsTest;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
@@ -45,6 +47,16 @@ class ApplicationTest extends NsTest {
             Validator validator = new Validator();
             boolean validateResult = validator.validateInput(input);
             assertThat(validateResult).isTrue();
+        });
+    }
+
+    @Test
+    void parser_test() {
+        assertSimpleTest(() -> {
+            String testInput = "1,2:3";
+            Parser parser = new Parser();
+            List<Integer> result = parser.parseString(testInput);
+            assertThat(result).containsExactly(1, 2, 3);
         });
     }
 
