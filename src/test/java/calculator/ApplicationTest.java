@@ -1,5 +1,6 @@
 package calculator;
 
+import calculator.domain.Calculator;
 import calculator.util.Parser;
 import calculator.util.Validator;
 import calculator.view.InputView;
@@ -71,7 +72,7 @@ class ApplicationTest extends NsTest {
         List<Integer> testNumbers = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
         Calculator calculator = new Calculator();
         int result = calculator.calculate(testNumbers);
-        assertThat(result).isEqualTo(10);
+        assertThat(result).isEqualTo(55);
     }
 
     @Override
