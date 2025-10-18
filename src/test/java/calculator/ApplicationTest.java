@@ -35,14 +35,17 @@ class ApplicationTest extends NsTest {
             assertThat(input).isEqualTo("문자열 입력");
         });
     }
+
     @Test
-    void validator_test(){
+    void validator_test() {
         assertSimpleTest(() -> {
-            run("1,2;3");
+            run("1,2:3");
+            InputView inputView = new InputView();
+            String input = inputView.inputString();
             Validator validator = new Validator();
-            boolean validateResult = validator.validateString();
+            boolean validateResult = validator.validateString(input);
             assertThat(validateResult).isTrue();
-        })
+        });
     }
 
     @Override
