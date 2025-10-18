@@ -1,6 +1,7 @@
 package calculator;
 
 import calculator.controller.Controller;
+import calculator.util.ErrorMessage;
 import calculator.view.InputView;
 
 public class Application {
@@ -10,7 +11,7 @@ public class Application {
             Controller controller = new Controller();
             controller.run();
         } catch (IllegalArgumentException e) {
-            e.printStackTrace();
+            throw new IllegalArgumentException(ErrorMessage.INPUT_ERROR);
         }
     }
 }

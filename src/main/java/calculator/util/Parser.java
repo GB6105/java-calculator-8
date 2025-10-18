@@ -33,7 +33,7 @@ public class Parser {
             try {
                 int value = Integer.parseInt(token);
                 if (value < 0) {
-                    throw new IllegalArgumentException(ErrorMessage.INPUT_ERROR);
+                    throw new IllegalArgumentException(ErrorMessage.INPUT_ERROR + "음수는 불가능합니다");
                 }
                 result.add(value);
 
