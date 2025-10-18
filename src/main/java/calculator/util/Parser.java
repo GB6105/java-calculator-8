@@ -24,9 +24,6 @@ public class Parser {
         String[] tokens;
         try {
             tokens = input.split(delimiters);
-            for (String s : tokens) {
-                System.out.println(s);
-            }
         } catch (Exception e) {
             throw new IllegalArgumentException(ErrorMessage.INPUT_ERROR);
         }

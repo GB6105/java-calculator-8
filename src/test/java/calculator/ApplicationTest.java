@@ -66,6 +66,14 @@ class ApplicationTest extends NsTest {
         assertThat(result).containsExactly(1, 2, 3);
     }
 
+    @Test
+    void calculator_test() {
+        List<Integer> testNumbers = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        Calculator calculator = new Calculator();
+        int result = calculator.calculate(testNumbers);
+        assertThat(result).isEqualTo(10);
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});
