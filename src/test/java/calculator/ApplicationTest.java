@@ -52,12 +52,18 @@ class ApplicationTest extends NsTest {
 
     @Test
     void parser_test() {
-        assertSimpleTest(() -> {
-            String testInput = "1,2:3";
-            Parser parser = new Parser();
-            List<Integer> result = parser.parseString(testInput);
-            assertThat(result).containsExactly(1, 2, 3);
-        });
+        String testInput = "1,2:3";
+        Parser parser = new Parser();
+        List<Integer> result = parser.parseString(testInput);
+        assertThat(result).containsExactly(1, 2, 3);
+    }
+
+    @Test
+    void parser_test2() {
+        String testInput = "//;\n1,2;3";
+        Parser parser = new Parser();
+        List<Integer> result = parser.parseString(testInput);
+        assertThat(result).containsExactly(1, 2, 3);
     }
 
     @Override
