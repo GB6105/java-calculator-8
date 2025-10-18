@@ -75,6 +75,14 @@ class ApplicationTest extends NsTest {
         assertThat(result).isEqualTo(55);
     }
 
+    @Test
+    void output_test() {
+        int value = 6;
+        OutputView outputView = new OutputView();
+        outputView.printResult(value);
+        assertThat(output()).contains("결과 : 6");
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});
