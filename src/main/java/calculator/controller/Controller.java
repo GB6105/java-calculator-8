@@ -1,6 +1,7 @@
 package calculator.controller;
 
 import calculator.domain.Calculator;
+import calculator.util.ErrorMessage;
 import calculator.util.Parser;
 import calculator.util.Validator;
 import calculator.view.InputView;
@@ -14,7 +15,9 @@ public class Controller {
         String input = inputView.inputString();
 
         Validator validator = new Validator();
-        validator.validateInput(input);
+        if (!validator.validateInput(input)) {
+            throw new IllegalArgumentException(ErrorMessage.INPUT_ERROR);
+        }
 
         Parser parser = new Parser();
         List<Integer> numbers = parser.parseString(input);

@@ -13,12 +13,10 @@ public class Parser {
                 throw new IllegalArgumentException(ErrorMessage.INPUT_ERROR);
             }
             String customDelimiter = input.substring(2, customDelimiterIdx);
-            System.out.println("위치 파악" + customDelimiter);
             if (customDelimiter.length() != 1) {
                 throw new IllegalArgumentException(ErrorMessage.INPUT_ERROR);
             }
             input = input.substring(customDelimiterIdx + 2);
-            System.out.println("문자열만 " + input);
             delimiters += "|" + customDelimiter;
 
         }
@@ -32,9 +30,7 @@ public class Parser {
         for (String token : tokens) {
             try {
                 int value = Integer.parseInt(token);
-                if (value < 0) {
-                    throw new IllegalArgumentException(ErrorMessage.INPUT_ERROR + "음수는 불가능합니다");
-                }
+                checkValue(value);
                 result.add(value);
 
             } catch (NumberFormatException e) {
@@ -42,5 +38,11 @@ public class Parser {
             }
         }
         return result;
+    }
+
+    private void checkValue(int value) {
+        if (value <= 0) { // 등호 넣어주기
+            throw new IllegalArgumentException(ErrorMessage.INTEGER_RANGE_ERROR);
+        }
     }
 }

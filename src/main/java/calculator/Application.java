@@ -2,7 +2,6 @@ package calculator;
 
 import calculator.controller.Controller;
 import calculator.util.ErrorMessage;
-import calculator.view.InputView;
 
 public class Application {
     public static void main(String[] args) {
@@ -10,7 +9,7 @@ public class Application {
         try {
             Controller controller = new Controller();
             controller.run();
-        } catch (IllegalArgumentException e) {
+        } catch (Exception e) {
             throw new IllegalArgumentException(ErrorMessage.INPUT_ERROR);
         }
     }
